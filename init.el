@@ -14,6 +14,12 @@
 (delete-selection-mode 1)
 (set-face-attribute 'default nil :font "Fira Code" :height 130 :weight 'normal)
 
+(custom-theme-set-faces
+   'user
+   '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight thin))))
+   ;; '(fixed-pitch ((t ( :family "Fira Code Retina" :height 160))))
+   )
+
 ;; TODO you need to install it first ... then load :)  
 (load-theme 'ujelly t )
 
@@ -84,14 +90,20 @@
 
 (use-package magit)
 
-(defun efs/org-mode-setup ()
+(defun helje/org-mode-setup ()
   (org-indent-mode)
   (variable-pitch-mode 1)
   (auto-fill-mode 0)
-  (visual-line-mode 0))
+  (visual-line-mode 0)
+  (setq org-todo-keyword-faces
+	'(("WORKING" . "orange")
+	  ("CANCELLED" . "grey")))
+  (setq org-todo-keywords
+	'((sequence "TODO(t)" "WORKING(n)" "WAITING(w@/!)"
+		    "POSTPONED(p)" "|" "DONE(d@/!)" "CANCELLED(c)"))))
 
 (use-package org
-  ;;:hook (org-mode . efs/org-mode-setup)
+  :hook (org-mode . helje/org-mode-setup)
   :config
   (setq org-ellipsis " ▼ ")
   (org-babel-do-load-languages
@@ -186,6 +198,18 @@
     (setq projectile-project-search-path '("~/Projects/")))
   (setq projectile-switch-project-action #'projectile-dired))
 
+(use-package yasnippet
+  :ensure t
+  :diminish yas-minor-mode
+  :bind (:map yas-minor-mode-map
+              ("C-c C-y" . yas-expand))  
+  :config
+  (yas-reload-all)
+  (add-hook 'prog-mode-hook #'yas-minor-mode)
+  (yas-global-mode 1)
+  (setq yas-prompt-functions '(yas-dropdown-prompt
+                               yas-ido-prompt
+                               yas-completing-prompt)))
 
 ;; added here to be able to export from org to pdf with dicent fonts
 ;; "pdflatex" uses an old fixed size font ... 
@@ -197,14 +221,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("2b3f1e6abe0f02ff73d95dca04901bdbc2ecebe80fa453eded34fa39c8b050cb" "0717ec4adc3308de8cdc31d1b1aef17dc61003f09cb5f058f77d49da14e809cf" "a00d7e35e213d38a8149a637d4e6b3a86b489df92243cae64c843eea78ca385c" "ca5770241443683049a9b95690b5f4ffb4322c75f429bf4e7c7b853e6c4be425" "a67b6cb65db241e033b6aed5eeaf0805a1b62e598cedc605c71d003a1d5c00c6" "e9d47d6d41e42a8313c81995a60b2af6588e9f01a1cf19ca42669a7ffd5c2fde" default))
+   '("3a1a6a9cbff383a7122f7b2e5be7ca3c3951cab4705d2303c887368693c75fd3" "2b3f1e6abe0f02ff73d95dca04901bdbc2ecebe80fa453eded34fa39c8b050cb" "0717ec4adc3308de8cdc31d1b1aef17dc61003f09cb5f058f77d49da14e809cf" "a00d7e35e213d38a8149a637d4e6b3a86b489df92243cae64c843eea78ca385c" "ca5770241443683049a9b95690b5f4ffb4322c75f429bf4e7c7b853e6c4be425" "a67b6cb65db241e033b6aed5eeaf0805a1b62e598cedc605c71d003a1d5c00c6" "e9d47d6d41e42a8313c81995a60b2af6588e9f01a1cf19ca42669a7ffd5c2fde" default))
  '(package-selected-packages
-   '(poetry projectile helm-gitignore typescript-mode ujelly-theme reverse-theme hippo-themes flatland-black-theme cyberpunk-theme lsp-ivy markdown-mode lsp-mode python-mode org-roam magit counsel ivy-rich which-key rainbow-mode swiper rainbow-delimiters doom-modeline ivy use-package))
+   '(yasnippet poetry projectile helm-gitignore typescript-mode ujelly-theme reverse-theme hippo-themes flatland-black-theme cyberpunk-theme lsp-ivy markdown-mode lsp-mode python-mode org-roam magit counsel ivy-rich which-key rainbow-mode swiper rainbow-delimiters doom-modeline ivy use-package))
  '(warning-suppress-log-types '((use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight thin))))
  '(vertical-border ((nil (:inherit mode-line-inactive)))))
 

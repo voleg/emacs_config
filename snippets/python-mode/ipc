@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: IPython REPL for debug
+# key: ipc
+# --
+__import__("IPython").embed()
