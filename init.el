@@ -12,13 +12,14 @@
 (menu-bar-mode -1) 
 ;; (setq visible-bell t)
 (delete-selection-mode 1)
-(set-face-attribute 'default nil :font "Fira Code" :height 130 :weight 'normal)
+(set-face-attribute 'default nil :font "Fira Code" :height 160 :weight 'normal)
 
 (custom-theme-set-faces
    'user
    '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight thin))))
-   ;; '(fixed-pitch ((t ( :family "Fira Code Retina" :height 160))))
-   )
+   '(fixed-pitch ((t (:family "Fira Code" :height 150 :weight thin)))))
+
+;; (set-face-attribute 'org-table nil  :inherit 'fixed-pitch)
 
 ;; TODO you need to install it first ... then load :)  
 (load-theme 'ujelly t )
@@ -89,6 +90,12 @@
   :init (ivy-rich-mode 1))
 
 (use-package magit)
+
+(use-package mixed-pitch
+  :ensure t
+  :hook
+  ;; If you want it in all text modes:
+  (text-mode . mixed-pitch-mode))
 
 (defun helje/org-mode-setup ()
   (org-indent-mode)
@@ -186,7 +193,7 @@
 
 (use-package lsp-ivy)
 
-(org-roam-node-find "week 49")
+(org-roam-node-find "week 2024 02")
 
 
 (use-package projectile
@@ -223,13 +230,14 @@
  '(custom-safe-themes
    '("3a1a6a9cbff383a7122f7b2e5be7ca3c3951cab4705d2303c887368693c75fd3" "2b3f1e6abe0f02ff73d95dca04901bdbc2ecebe80fa453eded34fa39c8b050cb" "0717ec4adc3308de8cdc31d1b1aef17dc61003f09cb5f058f77d49da14e809cf" "a00d7e35e213d38a8149a637d4e6b3a86b489df92243cae64c843eea78ca385c" "ca5770241443683049a9b95690b5f4ffb4322c75f429bf4e7c7b853e6c4be425" "a67b6cb65db241e033b6aed5eeaf0805a1b62e598cedc605c71d003a1d5c00c6" "e9d47d6d41e42a8313c81995a60b2af6588e9f01a1cf19ca42669a7ffd5c2fde" default))
  '(package-selected-packages
-   '(yasnippet poetry projectile helm-gitignore typescript-mode ujelly-theme reverse-theme hippo-themes flatland-black-theme cyberpunk-theme lsp-ivy markdown-mode lsp-mode python-mode org-roam magit counsel ivy-rich which-key rainbow-mode swiper rainbow-delimiters doom-modeline ivy use-package))
+   '(darkroom mixed-pitch yasnippet poetry projectile helm-gitignore typescript-mode ujelly-theme reverse-theme hippo-themes flatland-black-theme cyberpunk-theme lsp-ivy markdown-mode lsp-mode python-mode org-roam magit counsel ivy-rich which-key rainbow-mode swiper rainbow-delimiters doom-modeline ivy use-package))
  '(warning-suppress-log-types '((use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(fixed-pitch ((t (:family "Fira Code" :height 150 :weight thin))))
  '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight thin))))
  '(vertical-border ((nil (:inherit mode-line-inactive)))))
 
