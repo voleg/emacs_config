@@ -12,12 +12,12 @@
 (menu-bar-mode -1) 
 ;; (setq visible-bell t)
 (delete-selection-mode 1)
-(set-face-attribute 'default nil :font "Fira Code" :height 160 :weight 'normal)
+(set-face-attribute 'default nil :font "Fira Code" :height 130 :weight 'normal)
 
 (custom-theme-set-faces
    'user
    '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight thin))))
-   '(fixed-pitch ((t (:family "Fira Code" :height 150 :weight thin)))))
+   '(fixed-pitch ((t (:family "Fira Code" :height 130 :weight thin)))))
 
 ;; (set-face-attribute 'org-table nil  :inherit 'fixed-pitch)
 
@@ -106,8 +106,8 @@
 	'(("WORKING" . "orange")
 	  ("CANCELLED" . "grey")))
   (setq org-todo-keywords
-	'((sequence "TODO(t)" "WORKING(n)" "WAITING(w@/!)"
-		    "POSTPONED(p)" "|" "DONE(d@/!)" "CANCELLED(c)"))))
+	'((sequence "TODO(t)" "WORKING(n)" "WAITING(w!)"
+		    "POSTPONED(p!)" "|" "DONE(d!)" "CANCELLED(c)"))))
 
 (use-package org
   :hook (org-mode . helje/org-mode-setup)
@@ -153,7 +153,7 @@
   :ensure t
   :after (lsp-mode)
   :mode "\\.ts\\'"
-  :hook (typescript-mode . lsp-deferred)
+  :hook (typescript-mode . lsp)
   :config
   (setq typescript-indent-level 2))
 
