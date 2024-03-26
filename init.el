@@ -1,4 +1,3 @@
-
 ;; this is my Emacs configuration from scratch experience :D
 ;; note that: 
 ;; C-x means CONTROL-x
@@ -19,6 +18,9 @@
    '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight thin))))
    '(fixed-pitch ((t (:family "Fira Code" :height 130 :weight thin)))))
 
+;; (custom-theme-set-faces
+;;  'user
+;;   '(org-date ((t (:inherit 'fixed-pitch)))))
 ;; (set-face-attribute 'org-table nil  :inherit 'fixed-pitch)
 
 ;; TODO you need to install it first ... then load :)  
@@ -27,9 +29,15 @@
 (add-hook 'text-mode-hook 'visual-line-mode)
 
 (require 'package)
-(add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("" . "https://orgmode.org/elpa/"))
+(add-to-list 'package-archives '( "jcs-elpa" . "https://jcs-emacs.github.io/jcs-elpa/packages/") t)
+
+;; (setq package-archive-priorities '(("melpa"    . 5)
+;;                                   ("jcs-elpa" . 0)))
+
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -89,17 +97,20 @@
 (use-package ivy-rich
   :init (ivy-rich-mode 1))
 
-(use-package magit)
-
-(use-package mixed-pitch
+(use-package magit
   :ensure t
-  :hook
-  ;; If you want it in all text modes:
-  (text-mode . mixed-pitch-mode))
+  )
+
+;; (use-package mixed-pitch
+;;   :ensure t
+;;   :hook
+;;   ;; If you want it in all text modes:
+;;   (text-mode . mixed-pitch-mode)
+;;   (org-date . fixed-pitch))
 
 (defun helje/org-mode-setup ()
   (org-indent-mode)
-  (variable-pitch-mode 1)
+  (variable-pitch-mode -1)
   (auto-fill-mode 0)
   (visual-line-mode 0)
   (setq org-todo-keyword-faces
@@ -115,7 +126,7 @@
   (setq org-ellipsis " ▼ ")
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((python . t)))
+   '((python . t) (plantuml . t)))
   (setq org-babel-python-command "python3")
   (setq org-confirm-babel-evaluate nil)
   (setq org-support-shift-select t)
@@ -149,14 +160,28 @@
   :custom
   (python-shell-interpreter "python3"))
 
+(use-package pet
+  :config
+  (add-hook 'python-base-mode-hook 'pet-mode -10))
+
+(use-package flycheck)
+
+(use-package prettier-js
+  :ensure t
+  :hook ((js-mode typescript-mode) . prettier-js-mode))
+
 (use-package typescript-mode
   :ensure t
   :after (lsp-mode)
-  :mode "\\.ts\\'"
+  :mode "\\.[tj]s\\'"
   :hook (typescript-mode . lsp)
   :config
   (setq typescript-indent-level 2))
 
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
 
 (use-package lsp-pyright
   :ensure t
@@ -199,6 +224,12 @@
 
 (use-package lsp-ivy)
 
+(use-package docker
+  :ensure t
+  :bind ("C-c d" . docker))
+
+(use-package lsp-docker)
+
 (org-roam-node-find "week 2024 02")
 
 
@@ -224,6 +255,19 @@
                                yas-ido-prompt
                                yas-completing-prompt)))
 
+(use-package codegpt :ensure t)
+(setq codegpt-tunnel 'completion            ; The default is 'completion
+      codegpt-model "gpt-3.5-turbo")  ; You can pick any model you want!
+
+;; TODO Play with Anthropic API (Claude)
+
+(use-package gptel
+  :ensure t)
+
+(gptel-make-anthropic "Claude"          ;Any name you want
+  :stream t                             ;Streaming responses
+  :key "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")
+
 ;; added here to be able to export from org to pdf with dicent fonts
 ;; "pdflatex" uses an old fixed size font ... 
 (setq latex-run-command "xelatex")
@@ -236,7 +280,7 @@
  '(custom-safe-themes
    '("3a1a6a9cbff383a7122f7b2e5be7ca3c3951cab4705d2303c887368693c75fd3" "2b3f1e6abe0f02ff73d95dca04901bdbc2ecebe80fa453eded34fa39c8b050cb" "0717ec4adc3308de8cdc31d1b1aef17dc61003f09cb5f058f77d49da14e809cf" "a00d7e35e213d38a8149a637d4e6b3a86b489df92243cae64c843eea78ca385c" "ca5770241443683049a9b95690b5f4ffb4322c75f429bf4e7c7b853e6c4be425" "a67b6cb65db241e033b6aed5eeaf0805a1b62e598cedc605c71d003a1d5c00c6" "e9d47d6d41e42a8313c81995a60b2af6588e9f01a1cf19ca42669a7ffd5c2fde" default))
  '(package-selected-packages
-   '(yafolding mixed-pitch yasnippet poetry projectile helm-gitignore typescript-mode ujelly-theme reverse-theme hippo-themes flatland-black-theme cyberpunk-theme lsp-ivy markdown-mode lsp-mode python-mode org-roam magit counsel ivy-rich which-key rainbow-mode swiper rainbow-delimiters doom-modeline ivy use-package))
+   '(flycheck pet gptel editorconfig prettier-js plantuml-mode docker lsp-docker hyperdrive yafolding mixed-pitch yasnippet poetry projectile helm-gitignore typescript-mode ujelly-theme reverse-theme hippo-themes flatland-black-theme cyberpunk-theme lsp-ivy markdown-mode lsp-mode python-mode org-roam magit counsel ivy-rich which-key rainbow-mode swiper rainbow-delimiters doom-modeline ivy use-package))
  '(warning-suppress-log-types '((use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
