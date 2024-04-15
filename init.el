@@ -11,13 +11,17 @@
 (menu-bar-mode -1) 
 ;; (setq visible-bell t)
 (delete-selection-mode 1)
-;; (set-face-attribute 'default nil :font "Fira Code" :height 120 :weight 'normal)
-(set-face-attribute 'default nil :font "Iosevka Curly" :height 130 :weight 'normal)
-
+;; (set-face-attribute 'default nil :font "Fira Code" :height 130 :weight 'normal)
+(set-face-attribute 'default nil :font "Iosevka Curly" :height 150 :weight 'normal)
 (custom-theme-set-faces
    'user
-   '(variable-pitch ((t (:family "ETBookOT" :height 150 :weight normal))))
-   '(fixed-pitch ((t (:family "Fira Code" :height 130 :weight normal)))))
+   '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight thin))))
+   '(fixed-pitch ((t (:family "Fira Code" :height 150 :weight thin)))))
+
+(custom-theme-set-faces
+ 'user
+ '(org-mode ((t (:inherit 'fixed-pitch))))
+ )
 
 ;; (custom-theme-set-faces
 ;;  'user
@@ -101,7 +105,7 @@
 
 (use-package magit
   :ensure t
-  )
+)
 
 ;; (use-package mixed-pitch
 ;;   :ensure t
@@ -294,7 +298,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(fixed-pitch ((t (:family "Fira Code" :height 150))))
+ '(fixed-pitch ((t (:family "Fira Code" :height 150 :weight thin))))
+ '(org-mode ((t (:inherit 'fixed-pitch))))
  '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight thin))))
  '(vertical-border ((nil (:inherit mode-line-inactive)))))
 
