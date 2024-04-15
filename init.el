@@ -115,6 +115,7 @@
   (variable-pitch-mode -1)
   (auto-fill-mode 0)
   (visual-line-mode 0)
+  (setq org-list-allow-alphabetical t)
   (setq org-todo-keyword-faces
 	'(("WORKING" . "orange")
 	  ("CANCELLED" . "grey")))
