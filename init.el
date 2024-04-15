@@ -11,20 +11,22 @@
 (menu-bar-mode -1) 
 ;; (setq visible-bell t)
 (delete-selection-mode 1)
-(set-face-attribute 'default nil :font "Fira Code" :height 130 :weight 'normal)
+;; (set-face-attribute 'default nil :font "Fira Code" :height 120 :weight 'normal)
+(set-face-attribute 'default nil :font "Iosevka Curly" :height 130 :weight 'normal)
 
 (custom-theme-set-faces
    'user
-   '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight thin))))
-   '(fixed-pitch ((t (:family "Fira Code" :height 130 :weight thin)))))
+   '(variable-pitch ((t (:family "ETBookOT" :height 150 :weight normal))))
+   '(fixed-pitch ((t (:family "Fira Code" :height 130 :weight normal)))))
 
 ;; (custom-theme-set-faces
 ;;  'user
 ;;   '(org-date ((t (:inherit 'fixed-pitch)))))
 ;; (set-face-attribute 'org-table nil  :inherit 'fixed-pitch)
 
-;; TODO you need to install it first ... then load :)  
-(load-theme 'ujelly t )
+;; TODO you need to install it first ... then load :)
+;; (load-theme 'ujelly t )
+(load-theme 'tsdh-light t)
 
 (add-hook 'text-mode-hook 'visual-line-mode)
 
@@ -84,7 +86,7 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 32)))
+  :custom ((doom-modeline-height 24)))
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
