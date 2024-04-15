@@ -129,7 +129,11 @@
   (setq org-ellipsis " ▼ ")
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((python . t) (plantuml . t)))
+   '(
+     (python . t)
+     (plantuml . t)
+     (latex . t)
+     ))
   (setq org-babel-python-command "python3")
   (setq org-confirm-babel-evaluate nil)
   (setq org-support-shift-select t)
