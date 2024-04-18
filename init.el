@@ -107,6 +107,10 @@
   :ensure t
 )
 
+(use-package diff-hl
+  :ensure t
+  :init (global-diff-hl-mode)
+  )
 ;; (use-package mixed-pitch
 ;;   :ensure t
 ;;   :hook
