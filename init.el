@@ -168,7 +168,9 @@
   :init
   (setq lsp-keymap-prefix "C-c l")
   :config
-  (lsp-enable-which-key-integration t))
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (lsp-enable-which-key-integration t)
+  )
 
 (use-package python-mode
   :ensure t
