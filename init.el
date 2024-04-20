@@ -8,11 +8,18 @@
 (tool-bar-mode -1)
 (tooltip-mode -1)
 (set-fringe-mode -1)
-(menu-bar-mode -1) 
+(menu-bar-mode -1)
 ;; (setq visible-bell t)
 (delete-selection-mode 1)
-;; (set-face-attribute 'default nil :font "Fira Code" :height 130 :weight 'normal)
-(set-face-attribute 'default nil :font "Iosevka Curly" :height 150 :weight 'normal)
+
+(desktop-save-mode 1)
+
+;; (set-face-attribute 'default nil :font "Fira Code" :height 150 :weight 'normal)
+(set-face-attribute 'default nil :font "Iosevka Curly" :height 130 :weight 'normal)
+;; (set-face-attribute 'default nil :font "Operator Mono" :height 190 :weight 'demilight)
+;; (set-face-attribute 'default nil :font "PragmataPro" :height 150 :weight 'light)
+
+
 (custom-theme-set-faces
    'user
    '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight thin))))
