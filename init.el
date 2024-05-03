@@ -138,6 +138,15 @@
 	'((sequence "TODO(t)" "WORKING(n)" "WAITING(w!)"
 		    "POSTPONED(p!)" "|" "DONE(d!)" "CANCELLED(c)"))))
 
+(use-package plantuml-mode
+  :init
+    (setq plantuml-default-exec-mode 'jar)
+    (setq plantuml-jar-path "~/plantuml.jar")
+    (setq org-plantuml-jar-path (expand-file-name "~/plantuml.jar"))
+    (setq org-startup-with-inline-images t)
+    (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+    (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t))))
+
 (use-package org
   :hook (org-mode . helje/org-mode-setup)
   :config
