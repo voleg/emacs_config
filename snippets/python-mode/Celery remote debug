@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Celery remote debug
+# key: crdb
+# --
+from celery.contrib import rdb; rdb.set_trace()
