@@ -213,9 +213,12 @@
 (use-package pet
   :config
   (add-hook 'python-base-mode-hook 'pet-mode -10))
-(load  (expand-file-name "debug/python-debug.el"))
+(load (expand-file-name "debug/python-debug.el"))
+
 
 (use-package flycheck)
+;; Load some flycheck custom stuff
+(load (expand-file-name "tools/flycheck-ruff-mypy.el"))
 
 (use-package prettier-js
   :ensure t
