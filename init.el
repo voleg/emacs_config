@@ -247,10 +247,10 @@
                           (require 'lsp-pyright)
                           (lsp))))  ; or lsp-deferred
 
-(use-package poetry
-  :ensure t
-  :hook
-  (python-mode . poetry-tracking-mode))
+;; (use-package poetry
+;;  :ensure t
+;;  :hook
+;;  (python-mode . poetry-tracking-mode))
 
 (use-package company
   :after lsp-mode
