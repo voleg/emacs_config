@@ -205,6 +205,8 @@
   (add-hook 'dap-stopped-hook
             (lambda (arg) (call-interactively #'dap-hydra))))
 
+(load (expand-file-name "debug/python-debug.el"))
+
 (use-package python-mode
   :ensure t
   :custom
@@ -213,7 +215,6 @@
 (use-package pet
   :config
   (add-hook 'python-base-mode-hook 'pet-mode -10))
-(load (expand-file-name "debug/python-debug.el"))
 
 
 (use-package flycheck)
