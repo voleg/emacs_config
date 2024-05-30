@@ -158,15 +158,6 @@
 	'((sequence "TODO(t)" "WORKING(n)" "WAITING(w!)"
 		    "POSTPONED(p!)" "|" "DONE(d!)" "CANCELLED(c)"))))
 
-(use-package plantuml-mode
-  :init
-    (setq plantuml-default-exec-mode 'jar)
-    (setq plantuml-jar-path "~/plantuml.jar")
-    (setq org-plantuml-jar-path (expand-file-name "~/plantuml.jar"))
-    (setq org-startup-with-inline-images t)
-    (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
-    (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t))))
-
 (use-package org
   :hook (org-mode . helje/org-mode-setup)
   :config
@@ -199,6 +190,16 @@
   :config
   (org-roam-setup))
 
+(use-package plantuml-mode
+  :init
+    (setq plantuml-default-exec-mode 'jar)
+    (setq plantuml-jar-path "~/plantuml.jar")
+    (setq org-plantuml-jar-path (expand-file-name "~/plantuml.jar"))
+    (setq org-startup-with-inline-images t)
+    (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+    (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
+  :after org)
+
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init
@@ -211,21 +212,36 @@
 (use-package with-venv
   :ensure t)
 
+(defun helje/dap-conf ()
+	(dap-mode 1)
+	;; The modes below are optional
+	(dap-ui-mode 1)
+	;; enables mouse hover support
+	(dap-tooltip-mode 1)
+	;; use tooltips for mouse hover
+	;; if it is not enabled `dap-mode' will use the minibuffer.
+	(tooltip-mode 1)
+	;; displays floating panel with debug buttons
+	;; requies emacs 26+
+	(dap-ui-controls-mode 1)
+  (load (expand-file-name "/Users/voleg/Projects/emacs_config/debug/python-debug.el"))
+	)
+
 (use-package dap-mode
   :ensure t
   :after lsp-mode
   :commands dap-debug
   :hook ((python-mode . dap-ui-mode) (python-mode . dap-mode))
   :config
-  (require 'dap-python)
+	(require 'dap-python)
   (setq dap-python-debugger 'debugpy)
   (defun dap-python--pyenv-executable-find (command)
     (with-venv (executable-find "python")))
-
+  (helje/dap-conf)
   (add-hook 'dap-stopped-hook
-            (lambda (arg) (call-interactively #'dap-hydra))))
-
-(load (expand-file-name "debug/python-debug.el"))
+            (lambda (arg) (call-interactively #'dap-hydra)))
+	
+	)
 
 (use-package python-mode
   :ensure t
@@ -239,7 +255,7 @@
 
 (use-package flycheck)
 ;; Load some flycheck custom stuff
-(load (expand-file-name "tools/flycheck-ruff-mypy.el"))
+(load (expand-file-name "/Users/voleg/Projects/emacs_config/tools/flycheck-ruff-mypy.el"))
 
 (use-package prettier-js
   :ensure t
@@ -324,7 +340,7 @@
               ("C-c C-y" . yas-expand))  
   :config
   (yas-reload-all)
-  (add-hook 'prog-mode-hook #'yas-minor-mode)
+  (add-hook 'prog-mode-hook 'yas-minor-mode)
   (yas-global-mode 1)
   (setq yas-prompt-functions '(yas-dropdown-prompt
                                yas-ido-prompt
@@ -353,9 +369,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("3a1a6a9cbff383a7122f7b2e5be7ca3c3951cab4705d2303c887368693c75fd3" "2b3f1e6abe0f02ff73d95dca04901bdbc2ecebe80fa453eded34fa39c8b050cb" "0717ec4adc3308de8cdc31d1b1aef17dc61003f09cb5f058f77d49da14e809cf" "a00d7e35e213d38a8149a637d4e6b3a86b489df92243cae64c843eea78ca385c" "ca5770241443683049a9b95690b5f4ffb4322c75f429bf4e7c7b853e6c4be425" "a67b6cb65db241e033b6aed5eeaf0805a1b62e598cedc605c71d003a1d5c00c6" "e9d47d6d41e42a8313c81995a60b2af6588e9f01a1cf19ca42669a7ffd5c2fde" default))
+	 '("3a1a6a9cbff383a7122f7b2e5be7ca3c3951cab4705d2303c887368693c75fd3" "2b3f1e6abe0f02ff73d95dca04901bdbc2ecebe80fa453eded34fa39c8b050cb" "0717ec4adc3308de8cdc31d1b1aef17dc61003f09cb5f058f77d49da14e809cf" "a00d7e35e213d38a8149a637d4e6b3a86b489df92243cae64c843eea78ca385c" "ca5770241443683049a9b95690b5f4ffb4322c75f429bf4e7c7b853e6c4be425" "a67b6cb65db241e033b6aed5eeaf0805a1b62e598cedc605c71d003a1d5c00c6" "e9d47d6d41e42a8313c81995a60b2af6588e9f01a1cf19ca42669a7ffd5c2fde" default))
  '(package-selected-packages
-   '(flycheck pet gptel editorconfig prettier-js plantuml-mode docker lsp-docker hyperdrive yafolding mixed-pitch yasnippet poetry projectile helm-gitignore typescript-mode ujelly-theme reverse-theme hippo-themes flatland-black-theme cyberpunk-theme lsp-ivy markdown-mode lsp-mode python-mode org-roam magit counsel ivy-rich which-key rainbow-mode swiper rainbow-delimiters doom-modeline ivy use-package))
+	 '(git-gutter-fringe git-gutter forge gitlab-ci-mode rg flycheck pet gptel editorconfig prettier-js plantuml-mode docker lsp-docker hyperdrive yafolding mixed-pitch yasnippet poetry projectile helm-gitignore typescript-mode ujelly-theme reverse-theme hippo-themes flatland-black-theme cyberpunk-theme lsp-ivy markdown-mode lsp-mode python-mode org-roam magit counsel ivy-rich which-key rainbow-mode swiper rainbow-delimiters doom-modeline ivy use-package))
  '(warning-suppress-log-types '((use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
