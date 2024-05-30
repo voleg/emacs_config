@@ -13,6 +13,7 @@
 (delete-selection-mode 1)
 
 (desktop-save-mode 1)
+(setq-default tab-width 2)
 
 ;; (set-face-attribute 'default nil :font "Fira Code" :height 150 :weight 'normal)
 (set-face-attribute 'default nil :font "Iosevka Curly" :height 130 :weight 'normal)
@@ -110,14 +111,33 @@
 (use-package ivy-rich
   :init (ivy-rich-mode 1))
 
+;; i had to (setq package-check-signature nil)
 (use-package magit
   :ensure t
 )
 
-(use-package diff-hl
+;; (use-package forge
+;; 	:ensure t
+;;   :after magit)
+
+;; (use-package diff-hl
+;;   :ensure t
+;;   :init (global-diff-hl-mode)
+;;   )
+
+(use-package git-gutter
   :ensure t
-  :init (global-diff-hl-mode)
-  )
+	:hook (prog-mode . git-gutter-mode)
+  :config
+  (setq git-gutter:update-interval 0.02))
+
+(use-package git-gutter-fringe
+  :ensure t
+	:config
+	(define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
+	(define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
+	(define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
+
 ;; (use-package mixed-pitch
 ;;   :ensure t
 ;;   :hook
