@@ -206,6 +206,12 @@
     (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
   :after org)
 
+;; With this you can add #+begin_src ... :async 
+(use-package ob-async
+  :ensure t
+  :after plantuml-mode
+  )
+
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init
