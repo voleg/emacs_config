@@ -145,6 +145,12 @@
 ;;   (text-mode . mixed-pitch-mode)
 ;;   (org-date . fixed-pitch))
 
+(defun helje/org-mode-rendered-image-inline ()
+  (define-key org-mode-map (kbd "C-c C-c")
+    (lambda () (interactive) (org-ctrl-c-ctrl-c)
+      (org-display-inline-images)))
+  )
+
 (defun helje/org-mode-setup ()
   (org-indent-mode)
   (variable-pitch-mode -1)
