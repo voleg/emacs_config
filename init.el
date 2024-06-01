@@ -7,7 +7,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
-(set-fringe-mode -1)
+;; (set-fringe-mode -1)   ;; hide git diff indication 
 (menu-bar-mode -1)
 ;; (setq visible-bell t)
 (delete-selection-mode 1)
@@ -282,7 +282,7 @@
   (lsp-enable-which-key-integration t)
   :hook (python-mode . (lambda ()
                           (require 'lsp-pyright)
-                          (lsp))))  ; or lsp-deferred
+                          (lsp))))  ; lsp or lsp-deferred
 
 ;; (use-package poetry
 ;;  :ensure t
@@ -315,10 +315,15 @@
 
 (use-package lsp-ivy)
 
+(use-package dockerfile-mode
+	:ensure t)
+
 (use-package docker
   :ensure t
   :bind ("C-c d" . docker))
 
+;; for docker-wrapped development environment with LSP / DAP
+;; https://emacs-lsp.github.io/lsp-mode/tutorials/docker-integration/
 (use-package lsp-docker)
 
 (org-roam-node-find "week 2024 02")
