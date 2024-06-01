@@ -326,9 +326,6 @@
 ;; https://emacs-lsp.github.io/lsp-mode/tutorials/docker-integration/
 (use-package lsp-docker)
 
-(org-roam-node-find "week 2024 02")
-
-
 (use-package projectile
   :diminish projectile-mode
   :config (projectile-mode)
@@ -388,3 +385,4 @@
  '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight thin))))
  '(vertical-border ((nil (:inherit mode-line-inactive)))))
 
+(org-roam-node-find "week 2024 22")
