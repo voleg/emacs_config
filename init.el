@@ -161,8 +161,10 @@
 	'(("WORKING" . "orange")
 	  ("CANCELLED" . "grey")))
   (setq org-todo-keywords
-	'((sequence "TODO(t)" "WORKING(n)" "WAITING(w!)"
-		    "POSTPONED(p!)" "|" "DONE(d!)" "CANCELLED(c)"))))
+	'((sequence "TODO(t)" "WORKING(n)" "WAITING(w)"
+		    "POSTPONED(p)" "|" "DONE(d)" "CANCELLED(c)")))
+  (helje/org-mode-rendered-image-inline)
+  )
 
 (use-package org
   :hook (org-mode . helje/org-mode-setup)
@@ -198,13 +200,13 @@
 
 (use-package plantuml-mode
   :init
-    (setq plantuml-default-exec-mode 'jar)
-    (setq plantuml-jar-path "~/plantuml.jar")
+  (setq plantuml-default-exec-mode 'jar) ;; 'server
+  ;; (setq plantuml-server-url "http://http://localhost:8080")
+  (setq plantuml-jar-path "~/plantuml.jar")
     (setq org-plantuml-jar-path (expand-file-name "~/plantuml.jar"))
     (setq org-startup-with-inline-images t)
-    (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
-    (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
-  :after org)
+    ;;(add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+    (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t))))
 
 ;; With this you can add #+begin_src ... :async 
 (use-package ob-async
