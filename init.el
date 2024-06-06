@@ -65,6 +65,10 @@
 ;; (use-package command-log-mode)
 (column-number-mode)
 
+;; Sort Directories first on top
+(setq ls-lisp-dirs-first t)
+(setq ls-lisp-use-insert-directory-program nil)
+
 ;; TODO: configure dired :) 
 ;; (use-package dired
 ;;   :ensure nil)
