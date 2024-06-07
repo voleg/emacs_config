@@ -357,6 +357,17 @@
     (setq projectile-project-search-path '("~/Projects/")))
   (setq projectile-switch-project-action #'projectile-dired))
 
+(setq enable-local-variables :safe)
+;; Add a directory to the safe list
+(defun add-to-safe-local-variable-values (directory)
+  (let ((project-dir (expand-file-name directory)))
+    (unless (assoc project-dir safe-local-variable-values)
+      (push (cons 'project-directory project-dir) safe-local-variable-values))))
+
+;; Example usage for a specific project
+(add-to-safe-local-variable-values "~/Projects")
+
+
 (use-package yasnippet
   :ensure t
   :diminish yas-minor-mode
