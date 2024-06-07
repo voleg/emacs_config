@@ -51,6 +51,9 @@
 
 ;; (setq package-archive-priorities '(("melpa"    . 5)
 ;;                                   ("jcs-elpa" . 0)))
+;; for MacOS 
+(use-package exec-path-from-shell
+	:init (exec-path-from-shell-initialize))
 
 (package-initialize)
 
@@ -94,7 +97,8 @@
 
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
-	 ("C-x b" . counsel-ibuffer)
+				 ("C-x b" . counsel-ibuffer)
+				 ("C-x C-b" . counsel-ibuffer)
 	 ("C-x C-f" . counsel-find-file)
 	 :map minibuffer-local-map
 	 ("C-r" . 'counsel-minibuffer-history)))
