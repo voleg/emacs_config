@@ -75,6 +75,7 @@
 ;; TODO: configure dired :) 
 ;; (use-package dired
 ;;   :ensure nil)
+(add-hook 'dired-mode-hook #'dired-hide-details-mode)
 
 (use-package swiper :ensure t)
 (use-package ivy
