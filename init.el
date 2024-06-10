@@ -270,12 +270,12 @@
 (use-package python-mode
   :ensure t
   :custom
-  (python-shell-interpreter "python3"))
+  ;; (python-shell-interpreter "python3")
+	)
 
 (use-package pet
   :config
   (add-hook 'python-base-mode-hook 'pet-mode -10))
-
 
 (use-package flycheck)
 ;; Load some flycheck custom stuff
@@ -304,9 +304,20 @@
   (setq lsp-keymap-prefix "C-c l")
   :config
   (lsp-enable-which-key-integration t)
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp))))  ; lsp or lsp-deferred
+  :hook
+	((python-mode . (lambda ()
+                    (require 'lsp-pyright)
+                    (lsp)))
+   ;; This hack is necessary to make additional flycheck checkers work in lsp-mode
+   (flycheck-mode . (lambda ()
+                      (flycheck-add-next-checker 'lsp 'python-ruff)
+                      (flycheck-add-next-checker 'python-ruff 'python-mypy)
+                      (message "Added flycheck checkers."))))
+	;; (python-mode . (lambda ()
+	;; 								 (require 'lsp-pyright)
+	;; 								 (lsp)))
+	
+	)  ; lsp or lsp-deferred
 
 ;; (use-package poetry
 ;;  :ensure t
@@ -359,7 +370,7 @@
     (setq projectile-project-search-path '("~/Projects/")))
   (setq projectile-switch-project-action #'projectile-dired))
 
-(setq enable-local-variables :safe)
+(setq enable-local-variables :all)
 ;; Add a directory to the safe list
 (defun add-to-safe-local-variable-values (directory)
   (let ((project-dir (expand-file-name directory)))
@@ -420,4 +431,4 @@
  '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight thin))))
  '(vertical-border ((nil (:inherit mode-line-inactive)))))
 
-(org-roam-node-find "week 2024 22")
+;; (org-roam-node-find "week 2024 22")
