@@ -122,8 +122,9 @@
 
 ;; i had to (setq package-check-signature nil)
 (use-package magit
-  :ensure t
-)
+	:ensure t
+  :bind (("C-x g" . magit-status)
+         ("C-x C-g" . magit-status)))
 
 ;; (use-package forge
 ;; 	:ensure t
