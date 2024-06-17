@@ -124,7 +124,9 @@
 (use-package magit
 	:ensure t
   :bind (("C-x g" . magit-status)
-         ("C-x C-g" . magit-status)))
+         ("C-x C-g" . magit-status))
+	:config (setq magit-save-repository-buffers 'dontask)
+	)
 
 ;; (use-package forge
 ;; 	:ensure t
