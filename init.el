@@ -15,10 +15,14 @@
 (desktop-save-mode 1)
 (setq-default tab-width 2)
 
-;; (set-face-attribute 'default nil :font "Fira Code" :height 150 :weight 'normal)
-(set-face-attribute 'default nil :font "Iosevka Curly" :height 130 :weight 'normal)
+;; (set-face-attribute 'default nil :font "Fira Code" :height 140 :weight 'normal)
+;; (set-face-attribute 'default nil :font "Consolas" :height 140 :weight 'normal)
+;; (set-face-attribute 'default nil :font "Iosevka Curly" :height 160 :weight 'normal)
 ;; (set-face-attribute 'default nil :font "Operator Mono" :height 190 :weight 'demilight)
-;; (set-face-attribute 'default nil :font "PragmataPro" :height 150 :weight 'light)
+(set-face-attribute 'default nil :font "PragmataPro Mono" :height 160 :weight 'normal)
+;; (set-face-attribute 'default nil :font "SF Mono" :height 140 :weight 'light)
+;; (set-face-attribute 'default nil :font "JetBrains Mono" :height 140 :weight 'normal)
+;; (set-face-attribute 'default nil :font "Monaspace Neon" :height 140 :weight 'normal)
 
 
 (custom-theme-set-faces
