@@ -285,7 +285,7 @@
 
 (use-package flycheck)
 ;; Load some flycheck custom stuff
-(load (expand-file-name "/Users/voleg/Projects/emacs_config/tools/flycheck-ruff-mypy.el"))
+;; (load (expand-file-name "/Users/voleg/Projects/emacs_config/tools/flycheck-ruff-mypy.el"))
 
 (use-package prettier-js
   :ensure t
@@ -317,7 +317,7 @@
    ;; This hack is necessary to make additional flycheck checkers work in lsp-mode
    (flycheck-mode . (lambda ()
                       (flycheck-add-next-checker 'lsp 'python-ruff)
-                      (flycheck-add-next-checker 'python-ruff 'python-mypy)
+                      ;;(flycheck-add-next-checker 'python-ruff 'python-mypy)
                       (message "Added flycheck checkers."))))
 	;; (python-mode . (lambda ()
 	;; 								 (require 'lsp-pyright)

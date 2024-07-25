@@ -31,7 +31,8 @@ See URL `https://beta.ruff.rs/docs/'."
 (defun python-flycheck-setup ()
   (progn
     (flycheck-select-checker 'python-ruff)
-    (flycheck-add-next-checker 'python-ruff 'python-mypy)
+    (flycheck-add-next-checker 'python-ruff)
+;;    (flycheck-add-next-checker 'python-ruff 'python-mypy)
     ))
 
 
