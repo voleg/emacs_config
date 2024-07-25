@@ -3,6 +3,27 @@
 ;; C-x means CONTROL-x
 ;; M-x means META-x (Command + x)
 (set-frame-parameter nil 'fullscreen 'fullboth)
+
+(global-set-key (kbd "C-c C-w") 'kill-ring-save) ; Original M-w functionality
+(global-set-key (kbd "M-w") nil) ; Disable the original M-w binding
+
+(when (not window-system)
+	;; (require 'xterm-mouse)
+	(xterm-mouse-mode t)
+	;; Set the Option key as Meta
+	(setq mac-function-modifier 'meta)
+  (setq mac-option-modifier nil)
+	(define-key input-decode-map "\e[1;2A" [S-up])
+	(define-key input-decode-map "\e[1;2B" [S-down])
+	(define-key input-decode-map "\e[1;2C" [S-right])
+	(define-key input-decode-map "\e[1;2D" [S-left])
+	(define-key input-decode-map "\e[1;5A" [C-up])
+	(define-key input-decode-map "\e[1;5B" [C-down])
+	(define-key input-decode-map "\e[1;5C" [C-right])
+	(define-key input-decode-map "\e[1;5D" [C-left])
+	
+)
+
 (setq inhibit-startup-message t)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -141,11 +162,13 @@
 ;;   :init (global-diff-hl-mode)
 ;;   )
 
-(use-package git-gutter
-  :ensure t
-	:hook (prog-mode . git-gutter-mode)
-  :config
-  (setq git-gutter:update-interval 0.02))
+(when (not window-system)
+	(use-package git-gutter
+		:ensure t
+		:hook (prog-mode . git-gutter-mode)
+		:config
+		(setq git-gutter:update-interval 0.02))
+)
 
 (use-package git-gutter-fringe
   :ensure t
