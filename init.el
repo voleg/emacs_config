@@ -8,20 +8,25 @@
 (global-set-key (kbd "M-w") nil) ; Disable the original M-w binding
 
 (when (not window-system)
-	;; (require 'xterm-mouse)
-	(xterm-mouse-mode t)
-	;; Set the Option key as Meta
-	(setq mac-function-modifier 'meta)
-  (setq mac-option-modifier nil)
-	(define-key input-decode-map "\e[1;2A" [S-up])
-	(define-key input-decode-map "\e[1;2B" [S-down])
-	(define-key input-decode-map "\e[1;2C" [S-right])
-	(define-key input-decode-map "\e[1;2D" [S-left])
-	(define-key input-decode-map "\e[1;5A" [C-up])
-	(define-key input-decode-map "\e[1;5B" [C-down])
-	(define-key input-decode-map "\e[1;5C" [C-right])
-	(define-key input-decode-map "\e[1;5D" [C-left])
+  ;; (require 'xterm-mouse)
+
+	(use-package xclip
+    :ensure t
+    :config
+    (xclip-mode +1))
 	
+  (xterm-mouse-mode t)
+  ;; Set the Option key as Meta
+  (setq mac-function-modifier 'meta)
+  (setq mac-option-modifier nil)
+  (define-key input-decode-map "\e[1;2A" [S-up])
+  (define-key input-decode-map "\e[1;2B" [S-down])
+  (define-key input-decode-map "\e[1;2C" [S-right])
+  (define-key input-decode-map "\e[1;2D" [S-left])
+  (define-key input-decode-map "\e[1;5A" [C-up])
+  (define-key input-decode-map "\e[1;5B" [C-down])
+  (define-key input-decode-map "\e[1;5C" [C-right])
+  (define-key input-decode-map "\e[1;5D" [C-left])	
 )
 
 (setq inhibit-startup-message t)
@@ -33,7 +38,7 @@
 ;; (setq visible-bell t)
 (delete-selection-mode 1)
 
-(desktop-save-mode 1)
+;; (desktop-save-mode 1)
 (setq-default tab-width 2)
 
 ;; (set-face-attribute 'default nil :font "Fira Code" :height 140 :weight 'normal)
