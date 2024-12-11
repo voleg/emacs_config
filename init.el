@@ -221,6 +221,7 @@
    'org-babel-load-languages
    '(
      (python . t)
+		 (sql . t)
      (plantuml . t)
      (latex . t)
      ))
@@ -360,6 +361,13 @@
 ;;  :ensure t
 ;;  :hook
 ;;  (python-mode . poetry-tracking-mode))
+
+(use-package sql
+	:ensure t)
+
+(add-hook 'sql-mode-hook 'lsp)
+;; (setq lsp-sqls-workspace-config-path "workspace")
+(setq lsp-sqls-workspace-config-path "~/.config/sqls/config.yml")
 
 (use-package company
   :after lsp-mode
