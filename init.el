@@ -16,6 +16,9 @@
     (xclip-mode +1))
 	
   (xterm-mouse-mode t)
+	;; (toggle-truncate-lines t)  ;; or C-x x t 
+	;; (setq truncate-lines t)
+	(setq-default truncate-string-ellipsis "↩")
 	(global-set-key (kbd "<mouse-4>") 'scroll-down-line)
   (global-set-key (kbd "<mouse-5>") 'scroll-up-line)
 
