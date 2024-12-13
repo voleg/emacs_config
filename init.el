@@ -7,6 +7,10 @@
 (global-set-key (kbd "C-c C-w") 'kill-ring-save) ; Original M-w functionality
 (global-set-key (kbd "M-w") nil) ; Disable the original M-w binding
 
+;; Use default email client from OS
+(setq browse-url-mailto-function 'browse-url-generic)
+(setq browse-url-generic-program "open")
+
 (when (not window-system)
   ;; (require 'xterm-mouse)
 
