@@ -229,6 +229,7 @@
    '(
      (python . t)
 		 (sql . t)
+		 (shell . t)
      (plantuml . t)
      (latex . t)
      ))
