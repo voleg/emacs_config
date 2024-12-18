@@ -271,6 +271,15 @@
   :after plantuml-mode
   )
 
+;; Org mode export to JSON for token optimazed LLM communication. UGLY
+;; (use-package ox-json
+;;   :ensure t
+;;   :config
+;;   (require 'ox-json))
+
+(with-eval-after-load 'ox
+  (require 'ox-md))  ; Enables Markdown export
+
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init
