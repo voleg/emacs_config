@@ -221,6 +221,11 @@
   (helje/org-mode-rendered-image-inline)
   )
 
+(use-package ob-mermaid
+	:config
+	(setq ob-mermaid-cli-path "/usr/local/bin/mmdc")
+	)
+
 (use-package org
   :hook (org-mode . helje/org-mode-setup)
   :config
@@ -233,11 +238,17 @@
 		 (shell . t)
      (plantuml . t)
      (latex . t)
+		 (mermaid . t)
      ))
   (setq org-babel-python-command "python3")
   (setq org-confirm-babel-evaluate nil)
   (setq org-support-shift-select t)
   )
+
+;; BibTex / BibLatex section
+;; (setq org-cite-export-processors '((latex biblatex) (t basic)))
+;; (setq org-cite-activate-processor 'biblatex)
+;; (setq org-cite-insert-processor 'basic)
 
 (use-package org-roam
   :init
