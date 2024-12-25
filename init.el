@@ -221,6 +221,9 @@
   (helje/org-mode-rendered-image-inline)
   )
 
+;; MPV playback
+(load (expand-file-name "/Users/voleg/Projects/emacs_config/tools/mpv_playback.el"))
+
 (use-package ob-mermaid
 	:config
 	(setq ob-mermaid-cli-path "/usr/local/bin/mmdc")
