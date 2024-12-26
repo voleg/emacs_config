@@ -36,7 +36,7 @@ If DIRECTORY is not provided, uses `save-video-default-directory`."
           (save-excursion
 						(end-of-line) ; Move to the end of the current line
             (newline)     ; Insert a newline for the new link
-						(org-insert-link nil (format "%s/%s" directory full-path) full-path))
+						(org-insert-link nil (format "%s" full-path) "saved"))
 					
           (message "Saving video to %s" full-path))
       (message "No valid video link under point!"))))
