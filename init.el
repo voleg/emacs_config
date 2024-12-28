@@ -117,6 +117,11 @@
 ;;   :ensure nil)
 (add-hook 'dired-mode-hook #'dired-hide-details-mode)
 
+(use-package vterm
+  :ensure t
+	:init
+	(global-set-key (kbd "<f12>") 'vterm))
+
 (use-package swiper :ensure t)
 (use-package ivy
   :diminish
