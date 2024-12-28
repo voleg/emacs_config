@@ -6,6 +6,7 @@
 
 (global-set-key (kbd "C-c C-w") 'kill-ring-save) ; Original M-w functionality
 (global-set-key (kbd "M-w") nil) ; Disable the original M-w binding
+(global-set-key (kbd "C-x ;") 'comment-line)
 
 ;; Use default email client from OS
 (setq browse-url-mailto-function 'browse-url-generic)
