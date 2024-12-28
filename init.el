@@ -299,6 +299,18 @@
 (with-eval-after-load 'ox
   (require 'ox-md))  ; Enables Markdown export
 
+(defun find-sourcekit-lsp ()
+  (or (executable-find "sourcekit-lsp")
+      (and (eq system-type 'darwin)
+           (string-trim (shell-command-to-string "xcrun -f sourcekit-lsp")))
+      "/usr/local/swift/usr/bin/sourcekit-lsp"))
+
+(use-package lsp-sourcekit
+    :ensure t
+    :after lsp-mode
+    :custom
+    (lsp-sourcekit-executable (find-sourcekit-lsp) "Find sourcekit-lsp"))
+
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init
@@ -306,6 +318,8 @@
   :config
   (setq lsp-headerline-breadcrumb-enable nil)
   (lsp-enable-which-key-integration t)
+	:hook
+	((swift-mode . lsp))
   )
 
 (use-package with-venv
@@ -405,6 +419,12 @@
 (add-hook 'sql-mode-hook 'lsp)
 ;; (setq lsp-sqls-workspace-config-path "workspace")
 (setq lsp-sqls-workspace-config-path "~/.config/sqls/config.yml")
+
+;; Swift editing support
+(use-package swift-mode
+    :ensure t
+    :mode "\\.swift\\'"
+    :interpreter "swift")
 
 (use-package company
   :after lsp-mode
