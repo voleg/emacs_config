@@ -43,10 +43,7 @@ If DIRECTORY is not provided, uses `save-video-default-directory`."
 
 
 (defun encode-to-mp4 ()
-  "Run FFmpeg encoding on a video file linked in an Org file.
-Insert a link to the encoded file below the original link.
-The encoded video is saved in the same directory as the original file."
-  (interactive)
+	(interactive)
   (let ((link (org-element-context))) ; Get the element at point
     (if (eq (org-element-type link) 'link) ; Ensure the cursor is on a link
         (let* ((input-path (expand-file-name (org-element-property :path link)))
@@ -68,8 +65,44 @@ The encoded video is saved in the same directory as the original file."
             (insert "\n" (format "[[%s][encoded]]" output-path)))
           (message "FFmpeg encoding started: %s" output-path))
       (message "No valid link under point!"))))
+	
+	)
+
+(defun encode-to-smallest-mp4 ()
+  "Run FFmpeg encoding on a video file linked in an Org file.
+Insert a link to the encoded file below the original link.
+The encoded video is saved in the same directory as the original file."
+  (interactive)
+  (let ((link (org-element-context))) ; Get the element at point
+    (if (eq (org-element-type link) 'link) ; Ensure the cursor is on a link
+        (let* ((input-path (expand-file-name (org-element-property :path link)))
+               (output-path (concat (file-name-sans-extension input-path) ".mp4")))
+					(message "Starting FFmpeg encoding: %s -> %s" input-path output-path)
+          (start-process
+           "ffmpeg" "*ffmpeg*"
+           "ffmpeg"
+					 "-y"
+           "-i" (format "%s" input-path)
+           "-c:v" "libx265"
+					 "-preset" "slower"
+					 "-crf" "30"
+					 "-tag:v" "hvc1" ;; set a tag it's relevant for QuickTime player. 
+           "-c:a" "aac"
+					 "-b:a" "48k"
+					 "-ac" "1"  ;; mono 48kb aac sounds ok for voice
+					 "-movflags" "+faststart"
+ 					 "-strict" "experimental"
+           (format "%s" output-path))
+
+          ;; Insert the encoded video link after the original link
+          (save-excursion
+            (org-end-of-line)
+            (insert "\n" (format "[[%s][encoded]]" output-path)))
+          (message "FFmpeg encoding started: %s" output-path))
+      (message "No valid link under point!"))))
 
 
 (define-key video-keymap (kbd "o") 'open-video-link-in-mpv)
 (define-key video-keymap (kbd "s") 'save-video-with-mpv)
 (define-key video-keymap (kbd "e") 'encode-to-mp4)
+(define-key video-keymap (kbd "a") 'encode-to-smallest-mp4)  ;; a - Archive supper slow and high compression (for screencasts)
