@@ -65,8 +65,6 @@ If DIRECTORY is not provided, uses `save-video-default-directory`."
             (insert "\n" (format "[[%s][encoded]]" output-path)))
           (message "FFmpeg encoding started: %s" output-path))
       (message "No valid link under point!"))))
-	
-	)
 
 (defun encode-to-smallest-mp4 ()
   "Run FFmpeg encoding on a video file linked in an Org file.
