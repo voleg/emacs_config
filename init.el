@@ -530,6 +530,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(fixed-pitch ((t (:family "Fira Code" :height 150 :weight thin))))
+ '(mode-line-active ((t (:inherit mode-line :box nil))))
+ '(mode-line-inactive ((t (:inherit mode-line :foreground "#a0a1a7" :box nil))))
  '(org-block ((t (:inherit shadow :extend t :background "beige"))))
  '(org-block-begin-line ((t (:inherit org-meta-line :extend t :background "beige" :foreground "light gray"))))
  '(org-mode ((t (:inherit 'fixed-pitch))))
