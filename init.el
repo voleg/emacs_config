@@ -512,7 +512,7 @@
 
 (gptel-make-anthropic "Claude"          ;Any name you want
   :stream t                             ;Streaming responses
-  :key "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")
+  :key "THE-KEY-HERE")
 
 ;; added here to be able to export from org to pdf with dicent fonts
 ;; "pdflatex" uses an old fixed size font ... 
