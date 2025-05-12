@@ -269,7 +269,7 @@
   :config
   (setq org-roam-directory (file-truename "~/org-notes/roam"))
   (org-roam-db-autosync-mode)
-;;  (org-roam-completion-everywhere t) 
+  (setq org-roam-completion-everywhere t)
   :bind (("C-c n l" . org-roam-buffer-toggle)
 	 ("C-c n f" . org-roam-node-find)
 	 ("C-c n i" . org-roam-node-insert)
@@ -433,14 +433,23 @@
 
 (use-package company
   :after lsp-mode
-  :hook (prog-mode . company-mode)
+  :hook (after-init . global-company-mode)
   :bind
   (:map company-active-map ("<tab>" . company-complete-selection))
   (:map lsp-mode-map ("<tab>" . company-indent-or-complete-common))
   :custom
   (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0)
+  (company-idle-delay 0.1)
+	(company-dabbrev-ignore-case t)
+  (company-dabbrev-downcase nil)
   )
+
+(defun helje/org-mode-company-backends ()
+  (setq-local company-backends
+              '((company-capf company-dabbrev))))
+
+(add-hook 'org-mode-hook #'helje/org-mode-company-backends)
+
 
 (use-package yafolding
   :ensure t
