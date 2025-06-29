@@ -256,6 +256,7 @@
   (setq org-babel-python-command "python3")
   (setq org-confirm-babel-evaluate nil)
   (setq org-support-shift-select t)
+	(setq org-log-done 'time)
   )
 
 ;; BibTex / BibLatex section
