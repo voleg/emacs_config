@@ -548,6 +548,9 @@
  '(org-block ((t (:inherit shadow :extend t :background "beige"))))
  '(org-block-begin-line ((t (:inherit org-meta-line :extend t :background "beige" :foreground "light gray"))))
  '(org-mode ((t (:inherit 'fixed-pitch))))
+ '(tty-menu-disabled-face ((t (:background "brightblack" :foreground "lightgray"))))
+ '(tty-menu-enabled-face ((t (:background "brightblack" :foreground "brightwhite"))))
+ '(tty-menu-selected-face ((t (:background "black"))))
  '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight thin))))
  '(vertical-border ((nil (:inherit mode-line-inactive)))))
 
