@@ -3,7 +3,7 @@
 ;; C-x means CONTROL-x
 ;; M-x means META-x (Command + x)
 (set-frame-parameter nil 'fullscreen 'fullboth)
-
+(setq system-time-locale "nl_NL")
 (global-set-key (kbd "C-c C-w") 'kill-ring-save) ; Original M-w functionality
 (global-set-key (kbd "M-w") nil) ; Disable the original M-w binding
 (global-set-key (kbd "C-x ;") 'comment-line)
