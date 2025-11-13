@@ -108,7 +108,7 @@
 
 ;; (use-package command-log-mode)
 (column-number-mode)
-
+(setq org-plantuml-jar-path "~/plantuml.jar")
 ;; Sort Directories first on top
 (setq ls-lisp-dirs-first t)
 (setq ls-lisp-use-insert-directory-program nil)
@@ -257,6 +257,7 @@
   (setq org-confirm-babel-evaluate nil)
   (setq org-support-shift-select t)
 	(setq org-log-done 'time)
+	;; (setq org-startup-with-inline-images t)
   )
 
 ;; BibTex / BibLatex section
@@ -281,14 +282,12 @@
   (org-roam-setup))
 
 (use-package plantuml-mode
-  :init
-  (setq plantuml-default-exec-mode 'jar) ;; 'server
-  ;; (setq plantuml-server-url "http://http://localhost:8080")
-  (setq plantuml-jar-path "~/plantuml.jar")
-    (setq org-plantuml-jar-path (expand-file-name "~/plantuml.jar"))
-    (setq org-startup-with-inline-images t)
-    ;;(add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
-    (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t))))
+	:ensure t
+	:config
+	(setq plantuml-jar-path "~/plantuml.jar")
+	(setq plantuml-default-exec-mode 'jar)
+  (setq plantuml-java-command "~/.local/bin/java")
+  (setq plantuml-java-args '("-Djava.awt.headless=true")))
 
 ;; With this you can add #+begin_src ... :async 
 (use-package ob-async
