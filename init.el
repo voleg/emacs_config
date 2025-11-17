@@ -90,8 +90,8 @@
 (add-to-list 'package-archives '("" . "https://orgmode.org/elpa/"))
 (add-to-list 'package-archives '( "jcs-elpa" . "https://jcs-emacs.github.io/jcs-elpa/packages/") t)
 
-;; (setq package-archive-priorities '(("melpa"    . 5)
-;;                                   ("jcs-elpa" . 0)))
+(setq package-archive-priorities '(("melpa"    . 5)
+                                  ("jcs-elpa" . 0)))
 ;; for MacOS 
 (use-package exec-path-from-shell
 	:init (exec-path-from-shell-initialize))
@@ -363,7 +363,7 @@
 
 (use-package python-mode
   :ensure t
-  :custom
+  ;; :custom
   ;; (python-shell-interpreter "python3")
 	)
 
@@ -522,9 +522,9 @@
 (use-package gptel
   :ensure t)
 
-(gptel-make-anthropic "Claude"          ;Any name you want
-  :stream t                             ;Streaming responses
-  :key "THE-KEY-HERE")
+;; (gptel-make-anthropic "Claude"          ;Any name you want
+;;  :stream t                             ;Streaming responses
+;;  :key "THE-KEY-HERE")
 
 ;; added here to be able to export from org to pdf with dicent fonts
 ;; "pdflatex" uses an old fixed size font ... 
