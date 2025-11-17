@@ -418,6 +418,9 @@
 ;;  :hook
 ;;  (python-mode . poetry-tracking-mode))
 
+(use-package uv-mode
+  :hook (python-mode . uv-mode-auto-activate-hook))
+
 (use-package sql
 	:ensure t)
 
