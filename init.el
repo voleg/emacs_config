@@ -179,10 +179,19 @@
 ;; 	:ensure t
 ;;   :after magit)
 
-;; (use-package diff-hl
-;;   :ensure t
-;;   :init (global-diff-hl-mode)
-;;   )
+(use-package diff-hl
+  :ensure t
+  :init (global-diff-hl-mode)
+	:config
+	;; Enable margin mode for TTY or when fringes are not available
+  (diff-hl-margin-mode 1)
+
+  ;; Optional: set margin width and symbols
+  (setq diff-hl-margin-symbols-alist
+        '((insert . "+")   ;; Added lines
+          (delete . "-")   ;; Deleted lines
+          (change . " "))) ;; Changed lines
+  )
 
 (when (not window-system)
 	(use-package git-gutter
