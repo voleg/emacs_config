@@ -372,7 +372,7 @@
 
 (use-package python-mode
   :ensure t
-  :custom
+  ;; :custom
   ;; (python-shell-interpreter "python3")
 	)
 
@@ -555,8 +555,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(fixed-pitch ((t (:family "Fira Code" :height 150 :weight thin))))
- '(mode-line-active ((t (:inherit mode-line :box nil))))
- '(mode-line-inactive ((t (:inherit mode-line :foreground "#a0a1a7" :box nil))))
+ '(mode-line-active ((t (:inherit mode-line :background "f0f0ff"  :box nil))))
+ '(mode-line-inactive ((t (:inherit mode-line :background "f0f0ff" :foreground "#a0a1a7" :box nil))))
  '(org-block ((t (:inherit shadow :extend t :background "beige"))))
  '(org-block-begin-line ((t (:inherit org-meta-line :extend t :background "beige" :foreground "light gray"))))
  '(org-mode ((t (:inherit 'fixed-pitch))))
@@ -564,6 +564,6 @@
  '(tty-menu-enabled-face ((t (:background "brightblack" :foreground "brightwhite"))))
  '(tty-menu-selected-face ((t (:background "black"))))
  '(variable-pitch ((t (:family "ETBookOT" :height 180 :weight thin))))
- '(vertical-border ((nil (:inherit mode-line-inactive)))))
+ '(vertical-border ((t (:inherit transient-key-noop)))))
 
 ;; (org-roam-node-find "week 2024 22")
