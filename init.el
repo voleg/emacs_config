@@ -333,7 +333,7 @@
   (setq lsp-headerline-breadcrumb-enable nil)
   (lsp-enable-which-key-integration t)
 	:hook
-	((swift-mode . lsp))
+	((swift-mode . lsp-deferred))
   )
 
 (use-package with-venv
@@ -371,10 +371,7 @@
 	)
 
 (use-package python-mode
-  :ensure t
-  ;; :custom
-  ;; (python-shell-interpreter "python3")
-	)
+  :ensure t)
 
 (use-package pet
   :config
@@ -392,7 +389,7 @@
   :ensure t
   :after (lsp-mode)
   :mode "\\.[tj]s\\'"
-  :hook (typescript-mode . lsp)
+  :hook (typescript-mode . lsp-deferred)
   :config
   (setq typescript-indent-level 2))
 
@@ -400,6 +397,13 @@
   :ensure t
   :config
   (editorconfig-mode 1))
+
+
+;; This is for not to forget
+;; (setq-local lsp-enabled-clients '(pyright) 
+;; (setq-local lsp-enabled-clients '(ty-ls)
+;; (setq-local lsp-enabled-clients '(ruff)
+
 
 (use-package lsp-pyright
   :ensure t
@@ -409,19 +413,18 @@
   (lsp-enable-which-key-integration t)
   :hook
 	((python-mode . (lambda ()
-                    (require 'lsp-pyright)
-                    (lsp)))
+                    ; (require 'lsp-pyright)
+										; disable PyRight LS it's slower than ty server / ruff server
+										; this way i can still tweak this var and restart LSP and i will get it connected 
+										(setq lsp-disabled-clients '(pyright))
+                    (lsp-deferred)))
    ;; This hack is necessary to make additional flycheck checkers work in lsp-mode
-   (flycheck-mode . (lambda ()
-                      (flycheck-add-next-checker 'lsp 'python-ruff)
-                      ;;(flycheck-add-next-checker 'python-ruff 'python-mypy)
-                      (message "Added flycheck checkers."))))
-	;; (python-mode . (lambda ()
-	;; 								 (require 'lsp-pyright)
-	;; 								 (lsp)))
-	
-	)  ; lsp or lsp-deferred
-
+   ;; (flycheck-mode . (lambda ()
+	 ;; 										(flycheck-add-next-checker 'lsp 'python-ruff)
+   ;;                    ;;(flycheck-add-next-checker 'python-ruff 'python-mypy 'python-pyright)
+   ;;                    (message "Added flycheck checkers.")))
+	 )
+	)
 ;; (use-package poetry
 ;;  :ensure t
 ;;  :hook
@@ -433,7 +436,7 @@
 (use-package sql
 	:ensure t)
 
-(add-hook 'sql-mode-hook 'lsp)
+(add-hook 'sql-mode-hook 'lsp-deferred)
 ;; (setq lsp-sqls-workspace-config-path "workspace")
 (setq lsp-sqls-workspace-config-path "~/.config/sqls/config.yml")
 
