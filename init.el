@@ -4,6 +4,10 @@
 ;; M-x means META-x (Command + x) # now it's (Option + x) it works in terminal
 (set-frame-parameter nil 'fullscreen 'fullboth)
 (setq system-time-locale "nl_NL")
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
 ;; (global-set-key (kbd "C-c C-w") 'kill-ring-save) ; Original M-w functionality
 ;; (global-set-key (kbd "M-w") nil) ; Disable the original M-w binding
 ;; (global-set-key (kbd "C-x ;") 'comment-line)
@@ -92,8 +96,8 @@
 (add-to-list 'package-archives '("" . "https://orgmode.org/elpa/"))
 (add-to-list 'package-archives '( "jcs-elpa" . "https://jcs-emacs.github.io/jcs-elpa/packages/") t)
 
-;; (setq package-archive-priorities '(("melpa"    . 5)
-;;                                   ("jcs-elpa" . 0)))
+(setq package-archive-priorities '(("melpa"    . 5)
+                                  ("jcs-elpa" . 0)))
 ;; for MacOS 
 (use-package exec-path-from-shell
 	:init (exec-path-from-shell-initialize))
@@ -536,9 +540,9 @@
 (use-package gptel
   :ensure t)
 
-(gptel-make-anthropic "Claude"          ;Any name you want
-  :stream t                             ;Streaming responses
-  :key "THE-KEY-HERE")
+;; (gptel-make-anthropic "Claude"          ;Any name you want
+;;  :stream t                             ;Streaming responses
+;;  :key "THE-KEY-HERE")
 
 ;; added here to be able to export from org to pdf with dicent fonts
 ;; "pdflatex" uses an old fixed size font ... 
