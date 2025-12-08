@@ -559,9 +559,19 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(company-tooltip ((t (:background "#dfffff" :foreground "midnightblue"))))
+ '(company-tooltip-annotation ((t (:foreground "violet"))))
+ '(company-tooltip-mouse ((t (:inherit highlight :background "brightwhite"))))
+ '(company-tooltip-scrollbar-thumb ((t (:background "mediumpurple1"))))
+ '(company-tooltip-scrollbar-track ((t (:background "#ddffff"))))
+ '(company-tooltip-selection ((t (:background "#7fffff"))))
+ '(error ((t (:foreground "firebrick2" :weight bold))))
  '(fixed-pitch ((t (:family "Fira Code" :height 150 :weight thin))))
- '(mode-line-active ((t (:inherit mode-line :background "f0f0ff"  :box nil))))
- '(mode-line-inactive ((t (:inherit mode-line :background "f0f0ff" :foreground "#a0a1a7" :box nil))))
+ '(header-line ((t (:inherit mode-line))))
+ '(highlight ((t (:background "lightcyan"))))
+ '(lsp-ui-doc-background ((t (:background "lightcyan"))))
+ '(mode-line-active ((t (:inherit mode-line :background "linen" :box nil))))
+ '(mode-line-inactive ((t (:inherit mode-line :background "linen" :foreground "#a0a1a7" :box nil))))
  '(org-block ((t (:inherit shadow :extend t :background "beige"))))
  '(org-block-begin-line ((t (:inherit org-meta-line :extend t :background "beige" :foreground "light gray"))))
  '(org-mode ((t (:inherit 'fixed-pitch))))
