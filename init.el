@@ -548,15 +548,26 @@
 ;; "pdflatex" uses an old fixed size font ... 
 (setq latex-run-command "xelatex")
 
+;; (use-package ox-reveal
+;;     :after org
+;;     :config
+;;     (setq org-reveal-root "/Users/voleg/Projects/reveal.js"))
+
+(use-package org-re-reveal
+  :after org
+  :config
+  ;; If your .org and .html live *next to* reveal.js:
+  (setq org-re-reveal-root "/Users/voleg/Projects/reveal.js"))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-	 '("3a1a6a9cbff383a7122f7b2e5be7ca3c3951cab4705d2303c887368693c75fd3" "2b3f1e6abe0f02ff73d95dca04901bdbc2ecebe80fa453eded34fa39c8b050cb" "0717ec4adc3308de8cdc31d1b1aef17dc61003f09cb5f058f77d49da14e809cf" "a00d7e35e213d38a8149a637d4e6b3a86b489df92243cae64c843eea78ca385c" "ca5770241443683049a9b95690b5f4ffb4322c75f429bf4e7c7b853e6c4be425" "a67b6cb65db241e033b6aed5eeaf0805a1b62e598cedc605c71d003a1d5c00c6" "e9d47d6d41e42a8313c81995a60b2af6588e9f01a1cf19ca42669a7ffd5c2fde" default))
+	 '("2a73ef80e6aa1efe7759c4fc1c7e52b6c092976788a26a292365a960f7c8d9b7" "9fb69436c074b82a62b78b8d733e6274d0bd16d156f7b094e2afe4345c040c49" "3a1a6a9cbff383a7122f7b2e5be7ca3c3951cab4705d2303c887368693c75fd3" "2b3f1e6abe0f02ff73d95dca04901bdbc2ecebe80fa453eded34fa39c8b050cb" "0717ec4adc3308de8cdc31d1b1aef17dc61003f09cb5f058f77d49da14e809cf" "a00d7e35e213d38a8149a637d4e6b3a86b489df92243cae64c843eea78ca385c" "ca5770241443683049a9b95690b5f4ffb4322c75f429bf4e7c7b853e6c4be425" "a67b6cb65db241e033b6aed5eeaf0805a1b62e598cedc605c71d003a1d5c00c6" "e9d47d6d41e42a8313c81995a60b2af6588e9f01a1cf19ca42669a7ffd5c2fde" default))
  '(package-selected-packages
-	 '(lsp-sourcekit swift-mode vterm xclip claude-shell company-lsp git-gutter-fringe git-gutter forge gitlab-ci-mode rg flycheck pet gptel editorconfig prettier-js plantuml-mode docker lsp-docker hyperdrive yafolding mixed-pitch yasnippet poetry projectile helm-gitignore typescript-mode ujelly-theme reverse-theme hippo-themes flatland-black-theme cyberpunk-theme lsp-ivy markdown-mode lsp-mode python-mode org-roam magit counsel ivy-rich which-key rainbow-mode swiper rainbow-delimiters doom-modeline ivy use-package))
+	 '(org-re-reveal helm-gitignore uv-mode org-drill pdd lsp-sourcekit swift-mode vterm xclip claude-shell company-lsp git-gutter-fringe git-gutter forge gitlab-ci-mode rg flycheck pet editorconfig prettier-js plantuml-mode docker lsp-docker hyperdrive yafolding mixed-pitch yasnippet projectile typescript-mode ujelly-theme reverse-theme hippo-themes flatland-black-theme cyberpunk-theme lsp-ivy markdown-mode lsp-mode python-mode org-roam counsel ivy-rich which-key rainbow-mode swiper rainbow-delimiters doom-modeline ivy use-package))
  '(warning-suppress-log-types '((use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
