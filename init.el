@@ -5,6 +5,10 @@
 (set-frame-parameter nil 'fullscreen 'fullboth)
 (setq system-time-locale "nl_NL")
 
+;; Optimizations
+(setq gc-cons-threshold 100000000
+      read-process-output-max (* 1024 1024))
+
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
@@ -187,10 +191,11 @@
 
 (use-package diff-hl
   :ensure t
-  :init (global-diff-hl-mode)
+  ;; :init
+	;; (global-diff-hl-mode)
 	:config
 	;; Enable margin mode for TTY or when fringes are not available
-  (diff-hl-margin-mode 1)
+  ;; (diff-hl-margin-mode nil)
 
   ;; Optional: set margin width and symbols
   (setq diff-hl-margin-symbols-alist
@@ -558,6 +563,10 @@
   :config
   ;; If your .org and .html live *next to* reveal.js:
   (setq org-re-reveal-root "/Users/voleg/Projects/reveal.js"))
+
+(setq-default grep-find-command '("rg -n -H --no-heading -e '' $default-directory" . 27))
+
+(global-set-key (kbd "M-g s") 'grep-find)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
